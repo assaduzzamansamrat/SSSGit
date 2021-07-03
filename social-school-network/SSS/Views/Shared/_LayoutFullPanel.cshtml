@@ -1,0 +1,624 @@
+﻿@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    @* <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>*@
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <link href="~/Content/css/jquery-ui.min.css" type="text/css" rel="stylesheet" />
+    @*<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css">*@
+    <!-- JQuery -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+
+    <script type="text/javascript">
+
+        function GetAllUserCallBackFunction() {
+            setTimeout(function ()
+            {
+                GetAllUsers();
+                GetAllUserCallBackFunction();
+            }, 1000);
+        }
+
+        function GetAllUsers() {
+            $.ajax({
+                type: "GET",
+                url: "NewsFeed/GetAllUsersByUserId",
+                dataType: "json",
+                data: null,
+                success: function (result, status, xhr) {
+                    $("#activememberslist").html("");
+                    $("#activememberslist").append(result);
+                },
+                error: function (xhr, status, error) {
+
+                }
+            });
+
+        }
+
+        function GetUserImageAndName() {
+            $.ajax({
+                type: "GET",
+                url: "NewsFeed/GetUserImageAndNameByUserId",
+                dataType: "json",
+                data: null,
+                success: function (result, status, xhr) {
+                    var a = result;
+                    if (result.ImagePath != null && result.ImagePath != "") {
+                        $("#userimagepath").attr("src", result.ImagePath);
+                    }
+                    $(".u-name-display").text(result.FirstName + " " + result.LastName);
+
+                },
+                error: function (xhr, status, error) {
+
+                }
+            });
+        }
+
+
+    </script>
+
+    <style type="text/css">
+
+        [data-theme="dark"] {
+            background-color: #272727;
+            overflow-x: hidden;
+            font-family: sans-serif !important;
+        }
+
+
+        body {
+            background-color: #d6d6d6;
+            overflow-x: hidden;
+            font-family: sans-serif !important;
+        }
+
+        .btn-primary:not([disabled]):not(.disabled):active, .btn-primary:not([disabled]):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+            background-color: #3c3d40 !important;
+        }
+
+        [data-theme="dark"] .top-status-panel {
+            margin-top: -40px;
+            margin-left: 25px;
+            color: #ffff;
+        }
+
+        .top-status-panel {
+            margin-top: -40px;
+            margin-left: 25px;
+            color: #0a0a0a;
+        }
+
+        [data-theme="dark"] .bottom-status-panel {
+            margin-bottom: -43px;
+            margin-top: 43px;
+            margin-left: 26px;
+            color: #ffff;
+        }
+
+        .bottom-status-panel {
+            margin-bottom: -43px;
+            margin-top: 43px;
+            margin-left: 26px;
+            color: #0a0a0a;
+        }
+
+        [data-theme="dark"] .text-area-background-color {
+            background-color: #272727;
+            color: #ffff;
+            margin-left: 20px;
+            width: 92%;
+            margin-top: -10px;
+            margin-bottom: -34px;
+            border: 1px solid #383838;
+        }
+
+        .text-area-background-color {
+            background-color: #ffffff;
+            color: #ffff;
+            margin-left: 20px;
+            width: 92%;
+            margin-top: -10px;
+            margin-bottom: -34px;
+            border: 1px solid #ffffff;
+        }
+
+        [data-theme="dark"] .text-area-background-color:focus {
+            background-color: #272727;
+            color: #ffff;
+            border: 1px solid #696969;
+        }
+
+
+        .text-area-background-color:focus {
+            background-color: #ffffff;
+            color: #0a0a0a;
+            border: 1px solid #d8d8d8;
+        }
+
+        .no-left-padding {
+            padding-left: 0px !important;
+        }
+
+        .container-fluid {
+            padding: 0px;
+        }
+
+        .top-panel-container {
+            padding: 30px !important;
+            position: fixed;
+            margin-right: -20px;
+            top: 0;
+            width: 100%;
+            z-index: 1000 !important;
+            max-height: 40px;
+        }
+
+        .top-context {
+            margin-top: -12px !important;
+        }
+
+        .left-panel-container {
+            height: 100%;
+            position: fixed;
+            width: 20%;
+            margin-top: 61px;
+            left: 0px;
+        }
+
+        .post-btn {
+            margin-left: 18px;
+            background-color: #3c3d40 !important;
+        }
+
+        .right-panel-container {
+            height: 100%;
+            position: fixed;
+            width: 20%;
+            margin-top: 61px;
+            right: 0px;
+        }
+
+        .no-right-padding {
+            padding-right: 0px !important;
+        }
+
+        [data-theme="dark"] .main-structure {
+            background-color: #333333;
+        }
+
+        .main-structure {
+            background-color: #ffff;
+        }
+
+        .status-panel {
+            margin-top: 82px;
+            margin-left: -52px;
+        }
+
+        .news-feed-panel {
+            margin-left: -52px;
+            height: auto;
+        }
+
+        .right-panel-one {
+            margin-top: 82px;
+            margin-right: -55px;
+            width: 250px;
+            height: 240px;
+            position: fixed;
+        }
+
+        .list-group-item {
+            padding: .60rem 1.25rem;
+        }
+
+        .menu-list {
+            margin-top: -55px;
+        }
+
+        .post-right-settings {
+            margin-left: 25%;
+        }
+
+        [data-theme="dark"] .custom-list-group-item {
+            background-color: #333333;
+            border: none;
+            color: #ffff !important;
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+
+        .custom-list-group-item {
+            background-color: #ffffff;
+            border: none;
+            color: #0a0a0a !important;
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+
+        [data-theme="dark"] .list-group-item.active {
+            z-index: 2;
+            color: #fff;
+            background-color: #1b3a61;
+            border-color: #18293c;
+        }
+
+        .list-group-item.active {
+            z-index: 2;
+            color: #fff;
+            background-color: #1c60b5;
+            border-color: #18293c;
+        }
+
+        [data-theme="dark"] .custom-list-group-item-label {
+            background-color: #333333;
+            border: none;
+            color: #8a8989 !important;
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+
+        .custom-list-group-item-label {
+            background-color: #ffffff;
+            border: none;
+            color: #8a8989 !important;
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+
+        .u-name-display {
+            color: #0a0a0a;
+        }
+
+        .logout-text {
+            color: #0a0a0a;
+        }
+
+        [data-theme="dark"] .logout-text {
+            color: #ffff;
+        }
+
+        [data-theme="dark"] .switch-label {
+            color: #ffff;
+        }
+
+
+        [data-theme="dark"] .u-name-display {
+            color: #ffff;
+        }
+
+        [data-theme="dark"] .list-group-item-action:focus, [data-theme="dark"] .list-group-item-action:hover {
+            background-color: #18293c;
+        }
+
+        .list-group-item-action:focus, .list-group-item-action:hover {
+            background-color: #91c1f7;
+        }
+
+        .nav-icon {
+            height: 25px;
+            width: 25px;
+            border-radius: 25px;
+            object-fit: cover;
+        }
+
+        [data-theme="dark"] .stories {
+            color: #ffff;
+            text-align: center;
+        }
+
+        .stories {
+            color: #0a0a0a;
+            text-align: center;
+        }
+
+        .post-type {
+            color: #626369;
+            margin-left: -36px;
+        }
+
+        .dot {
+            height: 6px;
+            width: 6px;
+            background-color: #08ff08;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        [data-theme="dark"] .bottom-line {
+            color: white;
+            background-color: #292929;
+        }
+
+        .bottom-line {
+            color: white;
+            background-color: #ffffff;
+        }
+
+        .user-image-name {
+            margin-left: 5px;
+            width: 150px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .chat-icon {
+            height: 30px;
+            width: 30px;
+            border-radius: 25px;
+            object-fit: cover;
+        }
+
+        a {
+            text-decoration: none !important;
+        }
+
+        [data-theme="dark"] .caption {
+            margin-left: 10px;
+            padding-right: 5px;
+            color: #ffff;
+            font-size: 13px;
+        }
+
+        .caption {
+            margin-left: 10px;
+            padding-right: 5px;
+            color: #0a0a0a;
+            font-size: 13px;
+        }
+
+        [data-theme="dark"] .post-top-bar {
+            margin-left: 20px;
+            margin-top: -40px;
+            color: #ffff;
+        }
+
+        .post-top-bar {
+            margin-left: 20px;
+            margin-top: -40px;
+            color: #0a0a0a;
+        }
+
+
+        [data-theme="dark"] .post-bottom-bar {
+            margin-left: 10px;
+            color: #ffff;
+            margin-top: 10px;
+            margin-bottom: -25px;
+        }
+
+        .post-bottom-bar {
+            margin-left: 10px;
+            color: #0a0a0a;
+            margin-top: 10px;
+            margin-bottom: -25px;
+        }
+
+        .img-fluid, .modal-dialog.cascading-modal.modal-avatar .modal-header, .video-fluid {
+            /* max-width: 99%;*/
+            height: auto;
+            /* margin-left: 2px;*/
+        }
+
+        .heart-icon-left-padding {
+            margin-left: 40px;
+        }
+
+        .comment-icon {
+            margin-left: 20%;
+        }
+
+        .share-icon {
+            margin-left: 15%;
+        }
+
+        .image-slider {
+            position: relative;
+            margin-left: 5px;
+            margin-top: -54px;
+            padding-right: 5px;
+        }
+
+        .w-100 {
+            width: 98% !important;
+            height: 180px;
+        }
+
+        .search-box {
+            margin-top: -7px;
+        }
+
+        .switch-label {
+            color: #0a0a0a;
+        }
+
+        .active-members {
+            /* position: fixed;*/
+            bottom: 7px;
+            max-height: 270px;
+            overflow: auto;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+            .active-members::-webkit-scrollbar {
+                display: none;
+            }
+
+
+        .active-members {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+
+            $('#checkMeOut').change(function () {
+                if ($('#checkMeOut').prop('checked')) {
+                    $("body").attr('data-theme', 'dark');
+                }
+                else {
+                    $("body").removeAttr('data-theme');
+                }
+            });
+        });
+    </script>
+</head>
+
+<body class="custom-background">
+    <div class="container-fluid">
+        <div class="jumbotron jumbotron-fluid top-panel-container main-structure">
+            <div class="row top-context">
+
+                <div class="col-sm-2">
+                    <img src="~/Images/alfaz.png" class="chat-icon" alt="company" />
+
+                </div>
+                <div class="col-sm-5 search-box">
+                    <div class="input-group">
+                        <input class="form-control py-2 border-right-0 border" type="search" value="search" id="example-search-input">
+                        <span class="input-group-append">
+                            <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div>
+                        </span>
+                    </div>
+                </div>
+                <!-- Default checked -->
+                <div class="custom-switch  col-sm-2">
+                    <!-- Default checked -->
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="checkMeOut">
+                        <label class="custom-control-label switch-label" for="checkMeOut">Dark Mode</label>
+
+                    </div>
+
+                </div>
+                <div class="col-sm-2">
+                    <img src="/Images/User-Profile-Images/DefaultUserImage.jpg" id="userimagepath" class="chat-icon" alt="games" />
+                    <label class="u-name-display">John Doe</label>
+                </div>
+
+                <div class="col-sm-1">
+                    <!-- Default checked -->
+
+                    <a href="~/Login/Logout" class="logout-text"><img src="/Images/logout.jpg" class="chat-icon" alt="logout" />Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3 no-left-padding">
+                <div class="jumbotron jumbotron-fluid left-panel-container main-structure">
+
+                    <div class="list-group menu-list">
+                        <a class="list-group-item  custom-list-group-item-label">Menu</a>
+                        <a href="~/NewsFeed" class="list-group-item list-group-item-action custom-list-group-item active">Home</a>
+                        <a class="list-group-item list-group-item-action custom-list-group-item">Discussion</a>
+                        <a href="~/Events" class="list-group-item list-group-item-action custom-list-group-item">Events</a>
+                        <a href="~/Video" class="list-group-item list-group-item-action custom-list-group-item">Videos</a>
+                        <a class="list-group-item list-group-item-action custom-list-group-item">Files</a>
+                        <a class="list-group-item list-group-item-action custom-list-group-item">Photos</a>
+                    </div>
+
+                    <br /><br /><br />
+
+                    <div class="list-group menu-list">
+                        <a class="list-group-item  custom-list-group-item-label">Your Favourites</a>
+                        <a class="list-group-item list-group-item-action custom-list-group-item">
+                            <img src="~/Images/gamepad-512.png" class="nav-icon" alt="games" />
+                            Games
+                        </a>
+                        <a class="list-group-item list-group-item-action custom-list-group-item">
+                            <img src="~/Images/books.jpg" class="nav-icon" alt="Books" />
+                            Books
+                        </a>
+                        <a class="list-group-item list-group-item-action custom-list-group-item">
+                            <img src="~/Images/hobbies.jpg" class="nav-icon" alt="Hobbies" />
+                            Hobbies
+                        </a>
+                        <a class="list-group-item list-group-item-action custom-list-group-item">
+                            <img src="~/Images/cartoons.png" class="nav-icon" alt="cartoons" />
+                            Cartoons
+                        </a>
+                        <a class="list-group-item list-group-item-action custom-list-group-item">
+                            <img src="~/Images/foods.jpg" class="nav-icon" alt="foods" />
+                            Foods
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                @RenderBody()
+            </div>
+            
+            <div class="col-sm-3 no-right-padding">
+                <div class="jumbotron jumbotron-fluid right-panel-container main-structure">
+                    <div class="list-group menu-list">
+                        <a class="list-group-item  custom-list-group-item-label">Best Friends Forever</a>
+                        <a class="list-group-item list-group-item-action custom-list-group-item">
+                            <img src="~/Images/User-Profile-Images/jack.jpg" class="chat-icon" alt="games" />
+                            <span class="user-image-name">Jhon Doe</span>
+                            <span class="dot"></span>
+                        </a>
+                        <a class="list-group-item list-group-item-action custom-list-group-item">
+                            <img src="~/Images/User-Profile-Images/images.jpg" class="chat-icon" alt="Books" />
+                            <span class="user-image-name"> Devit Roy </span>
+                            <span class="dot"></span>
+                        </a>
+                        <a class="list-group-item list-group-item-action custom-list-group-item">
+                            <img src="~/Images/User-Profile-Images/R-NISRGXgPdl.jpg" class="chat-icon" alt="Hobbies" />
+                            <span class="user-image-name"> Robert jack</span>
+                            <span class="dot"></span>
+                        </a>
+                        <a class="list-group-item list-group-item-action custom-list-group-item">
+                            <img src="~/Images/User-Profile-Images/catherine.jpg" class="chat-icon" alt="cartoons" />
+                            <span class="user-image-name">Catherine Langford</span>
+                            <span class="dot"></span>
+                        </a>
+
+                    </div>
+
+                    <div class="list-group menu-list active-members">
+                        <div class="list-group-item  custom-list-group-item-label">Active Members</div>
+                        <div id="activememberslist">
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
