@@ -34,7 +34,7 @@
     .img-two-one {
         width: 242px;
         height: 320px;
-        border: 1px solid #ececec;
+        /*border: 1px solid #ececec;*/
         border-left: none;
     }
 
@@ -42,7 +42,7 @@
         margin-bottom: -157px;
         width: 242px;
         height: 320px;
-        border: 1px solid #ececec;
+        /*border: 1px solid #ececec;*/
         border-left: none;
     }
 
@@ -59,7 +59,7 @@
     .img-two-two {
         width: 239px;
         height: 320px;
-        border: 1px solid #ececec;
+        /*border: 1px solid #ececec;*/
         margin-left: -4px;
         border-right: none;
     }
@@ -74,8 +74,8 @@
 
     .img-three-one {
         width: 241px;
-        height: 230px;
-        border: 1px solid #ececec;
+        height: 231px;
+        /*border: 1px solid #ececec;*/
         border-left: none;
     }
 
@@ -83,7 +83,7 @@
         margin-bottom: -110px;
         width: 241px;
         height: 230px;
-        border: 1px solid #ececec;
+        /*border: 1px solid #ececec;*/
         border-left: none;
     }
 
@@ -111,7 +111,7 @@
 
     .load-comments {
         text-align: center;
-        cursor:pointer;
+        cursor: pointer;
     }
 
 
@@ -119,14 +119,14 @@
         width: 240px;
         height: 230px;
         margin-left: -4px;
-        border: 1px solid #ececec;
+        /*border: 1px solid #ececec;*/
         border-right: none;
     }
 
     .img-three-three {
         width: 481px;
         height: 250px;
-        border: 1px solid #ececec;
+        /*border: 1px solid #ececec;*/
         border-left: none;
         border-right: none;
     }
@@ -156,7 +156,77 @@
     .comment-container {
         margin-left: 34px;
     }
-</style>
+
+    body.modal-open {
+     overflow: hidden; 
+    }
+
+    .modal-content {
+        height:440px;
+    }
+    .modal {
+        left: 154px;
+    }
+
+    @@media screen and (min-width: 1501px) and (max-width:1600px) {
+        .img-one-one {
+            width: 486px;
+        }
+
+        .img-two-one {
+            width: 242px;
+            height: 320px;
+            border-left: 1px;
+            border-right: none;
+        }
+
+        .img-two-two {
+            width: 243px;
+            height: 320px;
+            margin-left: -4px;
+            border-right: 0;
+        }
+
+        .img-one-one-video {
+            width: 486px;
+        }
+
+        .img-three-one-video {
+            margin-bottom: -111px;
+            width: 241px;
+            height: 231px;
+            border-left: none;
+        }
+
+
+        .img-three-two {
+            width: 245px;
+            height: 231px;
+            margin-left: -5px;
+            border-right: none;
+        }
+
+        .img-three-three {
+            width: 486px;
+            height: 300px;
+            border-left: none;
+            border-right: none;
+        }
+
+        .right-panel-one {
+            margin-top: 82px;
+            margin-right: -55px;
+            width: 280px;
+            height: 240px;
+            position: fixed;
+        }
+
+        .submit-btn{
+            margin-left:100px;
+        }
+    }
+
+    </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -261,7 +331,7 @@
     }
 
     function GetAllCommentsByPostId(postId) {
-        debugger;
+      
         $.ajax({
             type: "GET",
             url: "NewsFeed/GetAllCommentsByPostId",
@@ -397,14 +467,14 @@
         <div class="form-group shadow-textarea main-structure">
             <textarea class="form-control text-area-background-color z-depth-1" id="PostText" name="PostText" maxlength="350" rows="4" placeholder="Ask what is in your mind ?"></textarea>
             <div class="progress md-progress process-bar">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="        width: 100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             <div class="gallery"></div>
             <input id="PostImagesOrVideos" name="PostImagesOrVideos" class="postspn" type="text" />
         </div>
         <p class="bottom-status-panel">
 
-            <input type="file" class="hidden" style="display:none !important;" multiple id="FileUpload" accept="image/.gif,.jpg,.jpeg,.png,.mp4,.WEBM,.MOV,.FLV,.MPEG">
+            <input type="file" class="hidden" style="        display: none !important;" multiple id="FileUpload" accept="image/.gif,.jpg,.jpeg,.png,.mp4,.WEBM,.MOV,.FLV,.MPEG">
             <i class="fas fa-camera imageorvideo-upload-panel"></i>
 
             <span class="imageorvideo-upload-panel">PiX & FliX</span>
@@ -413,10 +483,10 @@
             <span id="Feelingspn" name="Feelingspn">
                 <i class="far fa-smile feelingoractivity" id="FeelingSpnIcon" data-toggle="modal" data-target="#basicExampleModal"></i>
                 <span class="feelingoractivity" id="feelingspndata" data-toggle="modal" data-target="#basicExampleModal">Feeling / Activity</span>
-                <input type="text" name="Feeling" id="Feeling" value="" style="display:none;"/>
+                <input type="text" name="Feeling" id="Feeling" value="" style="        display: none;"/>
             </span>
             &nbsp;&nbsp;
-            <button type="submit" class="btn btn-primary btn-sm post-btn">Post</button>
+            <button type="submit" class="btn btn-primary btn-sm post-btn submit-btn">Post</button>
             <span class="custom-warning" id="waringmessage"></span>
         </p>
 
