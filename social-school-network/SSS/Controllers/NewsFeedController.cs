@@ -102,7 +102,8 @@ namespace SSS.Controllers
 
                         if (item.IsUserLoggedIn == true)
                         {
-                            dot = "<img src='/Images/active-member.png' class='chat-icon' alt='games'>";
+                            // dot = "<img src='/Images/active-member.png' class='chat-icon' alt='games'>";
+                            dot = "<span class='dot'></span>";
                         }
                         else
                         {
